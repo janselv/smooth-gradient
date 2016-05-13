@@ -4,7 +4,7 @@ This project use the [Swift Penner's Functions](https://github.com/janselr/swift
 
 Tweaking gradients we can turn the first image into second using these functions.
 
-![Regular](http:) ![Smooth](http://)
+![Regular](https://github.com/janselr/Smooth-CGGradient/blob/master/screenshots/gradient_cg.png) ![Smooth](https://github.com/janselr/Smooth-CGGradient/blob/master/screenshots/gradient_ds.png)
 
 
 ## Usage

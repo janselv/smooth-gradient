@@ -2,7 +2,7 @@
 //  SmoothCGGradient.h
 //  SmoothCGGradient
 //
-//  Created by Jansel  Rodriguez on 5/13/16.
+//  Created by Jansel Valentin on 5/13/16.
 //  Copyright © 2016 Jansel Valentin. All rights reserved.
 //
 

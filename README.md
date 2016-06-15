@@ -18,6 +18,6 @@ let gradient = CGGradient.with(Cubic.EaseIn, between: c1, and: c2)
 let gradient = CGGradient.with(Quad.EaseIn, between: c1, and: c2)
 ```
 
-You can also play with other esing function or and write your own.
+You can also play with other esing function or write your own.
 
 Supports iOS 7+

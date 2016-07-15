@@ -1,6 +1,6 @@
 # iOS Smooth Gradients using Penners's Easing Functions
 
-This project use the [Swift Penner's Functions](https://github.com/janselr/swift-penner-easing) to draw gradients that interpolate not linearly creating a smooth effect. Easing functions vary the rate at which gradient shading changes. Depending on the function you select, they provide gentler transitions into and out of the gradient.
+This project use the [Swift Penner's Functions](https://github.com/janselr/swift-penner-easing) to draw gradients that interpolate not linearly, creating a smooth effect. Easing functions vary the rate at which gradient shading changes. Depending on the function you select, they provide gentler transitions into and out of the gradient.
 
 Tweaking gradients we can turn the first image into second using these functions.
 
@@ -18,6 +18,6 @@ let gradient = CGGradient.with(Cubic.EaseIn, between: c1, and: c2)
 let gradient = CGGradient.with(Quad.EaseIn, between: c1, and: c2)
 ```
 
-You can also play with other esing function or and write your own.
+You can also play with other esing function or write your own.
 
 Supports iOS 7+

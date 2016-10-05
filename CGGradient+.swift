@@ -10,31 +10,31 @@ import UIKit
 
 extension CGGradient{
     
-    class func with(colors:[UIColor],_ locations:[CGFloat]) -> CGGradient{
-        return CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), colors.map{ $0.CGColor }, locations)!
+    class func with(_ colors:[UIColor],_ locations:[CGFloat]) -> CGGradient{
+        return CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors.map{$0.cgColor} as CFArray, locations: locations)!
     }
     
-    private class func with(colors:[CGColor],_ locations:[CGFloat]) -> CGGradient{
-        return CGGradientCreateWithColors(CGColorSpaceCreateDeviceRGB(), colors, locations)!
+    private class func with(_ colors:[CGColor],_ locations:[CGFloat]) -> CGGradient{
+        return CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors as CFArray, locations: locations)!
     }
     
-    class func with(@noescape easing:Easing, between:UIColor, and:UIColor) -> CGGradient{
+    class func with(easing:Easing, between:UIColor, and:UIColor) -> CGGradient{
         var colors    = [CGColor]()
         var locations = [CGFloat]()
         let samples = 24
         
-        func interpolateColor(percent:CGFloat) -> CGColor{
+        func interpolateColor(at percent:CGFloat) -> CGColor{
             var r1:CGFloat = 0.0,g1:CGFloat = 0.0,b1:CGFloat = 0.0, a1:CGFloat = 0.0
             var r2:CGFloat = 0.0,g2:CGFloat = 0.0,b2:CGFloat = 0.0, a2:CGFloat = 0.0
             
-            if 4 == CGColorGetNumberOfComponents(between.CGColor){
+            if 4 == between.cgColor.components?.count{
                 between.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
             }else{
                 between.getWhite(&r1, alpha: &a1)
                 b1 = r1; g1 = r1
             }
             
-            if 4 == CGColorGetNumberOfComponents(and.CGColor){
+            if 4 == and.cgColor.components?.count{
                 and.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
             }else{
                 and.getWhite(&r2, alpha: &a2)
@@ -46,7 +46,7 @@ extension CGGradient{
             let b = BezierCurve(t: percent, p0: b1, p1: b2)
             let a = BezierCurve(t: percent, p0: a1, p1: a2)
             
-            return UIColor(red: r, green: g, blue: b, alpha: a).CGColor
+            return UIColor(red: r, green: g, blue: b, alpha: a).cgColor
         }
         
         
@@ -54,10 +54,10 @@ extension CGGradient{
             let tt = CGFloat(i)/CGFloat(samples)
             
             // calculate t based on easing function provided
-            let t = easing(t: tt, b: 0.0, c: 1, d: 1)
+            let t = easing(tt, 0.0, 1, 1)
             
             locations.append(tt)
-            colors.append(interpolateColor(t))
+            colors.append(interpolateColor(at: t))
         }
         return with(colors, locations)
     }
@@ -66,12 +66,12 @@ extension CGGradient{
 
 
 
-func LinearBezierCurveFactors(t t:CGFloat) -> (CGFloat,CGFloat){
+func LinearBezierCurveFactors(t:CGFloat) -> (CGFloat,CGFloat){
     return ((1-t),t)
 }
 
 // Linear Bezier Curve, Just a Parameterized Line Equation
-func BezierCurve(t t:CGFloat,p0:CGFloat,p1:CGFloat) -> CGFloat{
+func BezierCurve(t:CGFloat,p0:CGFloat,p1:CGFloat) -> CGFloat{
     let factors = LinearBezierCurveFactors(t: t)
     return (factors.0*p0) + (factors.1*p1)
 }

@@ -12,10 +12,10 @@ Tweaking gradients we can turn the first image into second using these functions
 let c1 = UIColor(white: 0, alpha: 0)
 let c2 = UIColor(white: 0, alpha: 1)
 
-let gradient = CGGradient.with(Cubic.EaseIn, between: c1, and: c2)
+let gradient = CGGradient.with(easing: Cubic.EaseIn, between: c1, and: c2)
 
 // for less pronounced beginning try
-let gradient = CGGradient.with(Quad.EaseIn, between: c1, and: c2)
+let gradient = CGGradient.with(easing: Quad.EaseIn, between: c1, and: c2)
 ```
 
 You can also play with other esing function or write your own.

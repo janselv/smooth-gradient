@@ -64,14 +64,12 @@ extension CGGradient{
 }
 
 
-
-
-func LinearBezierCurveFactors(t:CGFloat) -> (CGFloat,CGFloat){
+fileprivate func LinearBezierCurveFactors(t:CGFloat) -> (CGFloat,CGFloat){
     return ((1-t),t)
 }
 
 // Linear Bezier Curve, Just a Parameterized Line Equation
-func BezierCurve(t:CGFloat,p0:CGFloat,p1:CGFloat) -> CGFloat{
+fileprivate func BezierCurve(t:CGFloat,p0:CGFloat,p1:CGFloat) -> CGFloat{
     let factors = LinearBezierCurveFactors(t: t)
     return (factors.0*p0) + (factors.1*p1)
 }

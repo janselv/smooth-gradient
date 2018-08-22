@@ -18,7 +18,7 @@ extension CGGradient{
         return CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors as CFArray, locations: locations)!
     }
     
-    class func with(easing: Easing, between:UIColor, and:UIColor) -> CGGradient{
+    class func with(easing: Easing, from c1: UIColor, to c2: UIColor) -> CGGradient{
         var colors    = [CGColor]()
         var locations = [CGFloat]()
         let samples = 24
@@ -27,17 +27,17 @@ extension CGGradient{
             var r1:CGFloat = 0.0, g1:CGFloat = 0.0, b1:CGFloat = 0.0, a1:CGFloat = 0.0
             var r2:CGFloat = 0.0, g2:CGFloat = 0.0, b2:CGFloat = 0.0, a2:CGFloat = 0.0
             
-            if 4 == between.cgColor.components?.count{
-                between.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
+            if 4 == c1.cgColor.components?.count{
+                c1.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
             }else{
-                between.getWhite(&r1, alpha: &a1)
+                c1.getWhite(&r1, alpha: &a1)
                 b1 = r1; g1 = r1
             }
             
-            if 4 == and.cgColor.components?.count{
-                and.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
+            if 4 == c2.cgColor.components?.count{
+                c2.getRed(&r2, green: &g2, blue: &b2, alpha: &a2)
             }else{
-                and.getWhite(&r2, alpha: &a2)
+                c2.getWhite(&r2, alpha: &a2)
                 b2 = r2; g2 = r2
             }
             

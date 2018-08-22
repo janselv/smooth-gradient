@@ -23,9 +23,9 @@ extension CGGradient{
         var locations = [CGFloat]()
         let samples = 24
         
-        func interpolateColor(at percent:CGFloat) -> CGColor{
-            var r1:CGFloat = 0.0,g1:CGFloat = 0.0,b1:CGFloat = 0.0, a1:CGFloat = 0.0
-            var r2:CGFloat = 0.0,g2:CGFloat = 0.0,b2:CGFloat = 0.0, a2:CGFloat = 0.0
+        func interpolateColor(at percent:CGFloat) -> CGColor {
+            var r1:CGFloat = 0.0, g1:CGFloat = 0.0, b1:CGFloat = 0.0, a1:CGFloat = 0.0
+            var r2:CGFloat = 0.0, g2:CGFloat = 0.0, b2:CGFloat = 0.0, a2:CGFloat = 0.0
             
             if 4 == between.cgColor.components?.count{
                 between.getRed(&r1, green: &g1, blue: &b1, alpha: &a1)
@@ -64,16 +64,7 @@ extension CGGradient{
 }
 
 
-
-
-func LinearBezierCurveFactors(t:CGFloat) -> (CGFloat,CGFloat){
-    return ((1-t),t)
+fileprivate func BezierCurve(t:CGFloat, p0:CGFloat, p1:CGFloat) -> CGFloat{
+    return (1.0 - t) * p0 + t * p1;
 }
-
-// Linear Bezier Curve, Just a Parameterized Line Equation
-func BezierCurve(t:CGFloat,p0:CGFloat,p1:CGFloat) -> CGFloat{
-    let factors = LinearBezierCurveFactors(t: t)
-    return (factors.0*p0) + (factors.1*p1)
-}
-
 

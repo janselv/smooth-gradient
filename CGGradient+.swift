@@ -18,7 +18,7 @@ extension CGGradient{
         return CGGradient(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: colors as CFArray, locations: locations)!
     }
     
-    class func with(easing:Easing, between:UIColor, and:UIColor) -> CGGradient{
+    class func with(easing: Easing, between:UIColor, and:UIColor) -> CGGradient{
         var colors    = [CGColor]()
         var locations = [CGFloat]()
         let samples = 24
@@ -50,11 +50,11 @@ extension CGGradient{
         }
         
         
-        for i in 0...24{
+        for i in 0...24 {
             let tt = CGFloat(i)/CGFloat(samples)
             
             // calculate t based on easing function provided
-            let t = easing(tt, 0.0, 1, 1)
+            let t = easing.invoke(tt, 0.0, 1, 1)
             
             locations.append(tt)
             colors.append(interpolateColor(at: t))
@@ -63,8 +63,8 @@ extension CGGradient{
     }
 }
 
-
 fileprivate func BezierCurve(t:CGFloat, p0:CGFloat, p1:CGFloat) -> CGFloat{
     return (1.0 - t) * p0 + t * p1;
 }
+
 

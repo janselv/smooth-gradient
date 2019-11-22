@@ -50,7 +50,7 @@ extension CGGradient{
         }
         
         
-        for i in 0...24 {
+        for i in 0...samples {
             let tt = CGFloat(i)/CGFloat(samples)
             
             // calculate t based on easing function provided
